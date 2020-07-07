@@ -38,15 +38,18 @@ female = data['Sex'] == 'female'
 women = data[female]
 
 
-# Remove aliases
+# Get list of first names
 def analize(line):
+    # Removing aliases
     # '.+\. '-> ends with dot symbol
     # ' ?\".+\"' -> enclosed in double quotes
     line = re.sub(r'.+\. | ?\".+\"', "", line)
+    # Removing prefixes
     # ' ?\(\)' -> empty parentheses
     #  ' ?\b[a-zA-Z]\b' -> single(two)-letter words
     line = re.sub(r' ?\(\)| ?\b[a-zA-Z]{1,2}\b', "", line)
-    # '\(.+\)' -> maiden names
+    # Removing married names
+    # '\(.+\)' -> words in parentheses
     seek = re.search(r'\(.+\)', line)
     if seek is not None:
         line = seek.group()
