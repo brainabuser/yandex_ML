@@ -4,8 +4,6 @@ import re
 
 data = pnd.read_csv('titanic.csv')
 
-# print(data.to_string())
-
 # Amount of both male and female Titanic passengers
 file1 = r'answers\1.txt'
 output1 = data['Sex'].value_counts()
@@ -39,8 +37,9 @@ with open(file5, 'w') as file1_obj:
 female = data['Sex'] == 'female'
 women = data[female]
 
+
+# Remove aliases
 def analize(line):
-    # Remove aliases
     # '.+\. '-> ends with dot symbol
     # ' ?\".+\"' -> enclosed in double quotes
     line = re.sub(r'.+\. | ?\".+\"', "", line)
